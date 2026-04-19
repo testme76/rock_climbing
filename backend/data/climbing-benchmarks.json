@@ -1,0 +1,322 @@
+{
+  "Bouldering_Male": {
+    "Finger_Strength": {
+      "Max_Hang_Str_Wt_20mm_10sec": {
+        "V3": { "lower_bound": 1.06, "upper_bound": 1.32 },
+        "V4": { "lower_bound": 1.09, "upper_bound": 1.31 },
+        "V5": { "lower_bound": 1.19, "upper_bound": 1.44 },
+        "V6": { "lower_bound": 1.27, "upper_bound": 1.48 },
+        "V7": { "lower_bound": 1.24, "upper_bound": 1.57 },
+        "V8": { "lower_bound": 1.27, "upper_bound": 1.60 },
+        "V9": { "lower_bound": 1.32, "upper_bound": 1.61 },
+        "V10": { "lower_bound": 1.41, "upper_bound": 1.74 }
+      },
+      "Repeaters_7_3_Bodyweight_20mm_sec": {
+        "V3": { "lower_bound": 54, "upper_bound": 106 },
+        "V4": { "lower_bound": 43, "upper_bound": 124 },
+        "V5": { "lower_bound": 52, "upper_bound": 141 },
+        "V6": { "lower_bound": 65, "upper_bound": 151 },
+        "V7": { "lower_bound": 73, "upper_bound": 178 },
+        "V8": { "lower_bound": 83, "upper_bound": 178 },
+        "V9": { "lower_bound": 76, "upper_bound": 183 },
+        "V10": { "lower_bound": 85, "upper_bound": 194 }
+      },
+      "Continuous_Hang_Time_20mm_sec": {
+        "V3": { "lower_bound": 13, "upper_bound": 41 },
+        "V4": { "lower_bound": 15, "upper_bound": 43 },
+        "V5": { "lower_bound": 23, "upper_bound": 51 },
+        "V6": { "lower_bound": 28, "upper_bound": 54 },
+        "V7": { "lower_bound": 24, "upper_bound": 65 },
+        "V8": { "lower_bound": 33, "upper_bound": 64 },
+        "V9": { "lower_bound": 34, "upper_bound": 67 },
+        "V10": { "lower_bound": 36, "upper_bound": 76 }
+      }
+    },
+    "Upper_Body_Power": {
+      "Weighted_Pull_Up_Str_Wt_1RM": {
+        "V3": { "lower_bound": 1.14, "upper_bound": 1.42 },
+        "V4": { "lower_bound": 1.32, "upper_bound": 1.53 },
+        "V5": { "lower_bound": 1.37, "upper_bound": 1.64 },
+        "V6": { "lower_bound": 1.35, "upper_bound": 1.64 },
+        "V7": { "lower_bound": 1.37, "upper_bound": 1.63 },
+        "V8": { "lower_bound": 1.42, "upper_bound": 1.69 },
+        "V9": { "lower_bound": 1.39, "upper_bound": 1.73 },
+        "V10": { "lower_bound": 1.51, "upper_bound": 1.80 }
+      },
+      "Campus_Max_Reach_inches": {
+        "V3": { "lower_bound": 20, "upper_bound": 31 },
+        "V4": { "lower_bound": 27, "upper_bound": 32 },
+        "V5": { "lower_bound": 27, "upper_bound": 32 },
+        "V6": { "lower_bound": 28, "upper_bound": 36 },
+        "V7": { "lower_bound": 28, "upper_bound": 37 },
+        "V8": { "lower_bound": 31, "upper_bound": 38 },
+        "V9": { "lower_bound": 30, "upper_bound": 40 },
+        "V10": { "lower_bound": 31, "upper_bound": 40 }
+      },
+      "Max_Pull_Ups_reps": {
+        "V3": { "lower_bound": 6, "upper_bound": 15 },
+        "V4": { "lower_bound": 10, "upper_bound": 18 },
+        "V5": { "lower_bound": 11, "upper_bound": 20 },
+        "V6": { "lower_bound": 11, "upper_bound": 20 },
+        "V7": { "lower_bound": 12, "upper_bound": 20 },
+        "V8": { "lower_bound": 12, "upper_bound": 21 },
+        "V9": { "lower_bound": 11, "upper_bound": 22 },
+        "V10": { "lower_bound": 14, "upper_bound": 24 }
+      }
+    },
+    "General_Fitness": {
+      "Max_Push_Ups_reps": {
+        "V3": { "lower_bound": 14, "upper_bound": 38 },
+        "V4": { "lower_bound": 20, "upper_bound": 45 },
+        "V5": { "lower_bound": 21, "upper_bound": 45 },
+        "V6": { "lower_bound": 22, "upper_bound": 39 },
+        "V7": { "lower_bound": 21, "upper_bound": 42 },
+        "V8": { "lower_bound": 20, "upper_bound": 49 },
+        "V9": { "lower_bound": 20, "upper_bound": 40 },
+        "V10": { "lower_bound": 22, "upper_bound": 42 }
+      }
+    }
+  },
+  "Bouldering_Female": {
+    "Finger_Strength": {
+      "Max_Hang_Str_Wt_20mm_10sec": {
+        "V3": { "lower_bound": 1.00, "upper_bound": 1.19 },
+        "V4": { "lower_bound": 1.07, "upper_bound": 1.31 },
+        "V5": { "lower_bound": 1.09, "upper_bound": 1.42 },
+        "V6": { "lower_bound": 1.11, "upper_bound": 1.46 },
+        "V7": { "lower_bound": 1.19, "upper_bound": 1.52 },
+        "V8": { "lower_bound": 1.20, "upper_bound": 1.50 },
+        "V9": { "lower_bound": 1.31, "upper_bound": 1.69 },
+        "V10": { "lower_bound": 1.44, "upper_bound": 1.83 }
+      },
+      "Repeaters_7_3_Bodyweight_20mm_sec": {
+        "V3": { "lower_bound": 18, "upper_bound": 75 },
+        "V4": { "lower_bound": 30, "upper_bound": 99 },
+        "V5": { "lower_bound": 47, "upper_bound": 132 },
+        "V6": { "lower_bound": 55, "upper_bound": 138 },
+        "V7": { "lower_bound": 69, "upper_bound": 170 },
+        "V8": { "lower_bound": 52, "upper_bound": 173 },
+        "V9": { "lower_bound": 66, "upper_bound": 198 },
+        "V10": { "lower_bound": 73, "upper_bound": 220 }
+      },
+      "Continuous_Hang_Time_20mm_sec": {
+        "V3": { "lower_bound": 8, "upper_bound": 27 },
+        "V4": { "lower_bound": 14, "upper_bound": 45 },
+        "V5": { "lower_bound": 17, "upper_bound": 53 },
+        "V6": { "lower_bound": 22, "upper_bound": 52 },
+        "V7": { "lower_bound": 31, "upper_bound": 60 },
+        "V8": { "lower_bound": 31, "upper_bound": 62 },
+        "V9": { "lower_bound": 35, "upper_bound": 76 },
+        "V10": { "lower_bound": 50, "upper_bound": 71 }
+      }
+    },
+    "Upper_Body_Power": {
+      "Weighted_Pull_Up_Str_Wt_1RM": {
+        "V3": { "lower_bound": 1.01, "upper_bound": 1.22 },
+        "V4": { "lower_bound": 1.06, "upper_bound": 1.38 },
+        "V5": { "lower_bound": 1.14, "upper_bound": 1.40 },
+        "V6": { "lower_bound": 1.15, "upper_bound": 1.39 },
+        "V7": { "lower_bound": 1.25, "upper_bound": 1.48 },
+        "V8": { "lower_bound": 1.25, "upper_bound": 1.54 },
+        "V9": { "lower_bound": 1.35, "upper_bound": 1.63 },
+        "V10": { "lower_bound": 1.40, "upper_bound": 1.63 }
+      },
+      "Campus_Max_Reach_inches": {
+        "V3": { "lower_bound": 8, "upper_bound": 23 },
+        "V4": { "lower_bound": 15, "upper_bound": 28 },
+        "V5": { "lower_bound": 17, "upper_bound": 32 },
+        "V6": { "lower_bound": 24, "upper_bound": 31 },
+        "V7": { "lower_bound": 25, "upper_bound": 33 },
+        "V8": { "lower_bound": 23, "upper_bound": 31 },
+        "V9": { "lower_bound": 27, "upper_bound": 32 },
+        "V10": { "lower_bound": 27, "upper_bound": 32 }
+      },
+      "Max_Pull_Ups_reps": {
+        "V3": { "lower_bound": 1, "upper_bound": 8 },
+        "V4": { "lower_bound": 2, "upper_bound": 12 },
+        "V5": { "lower_bound": 6, "upper_bound": 12 },
+        "V6": { "lower_bound": 6, "upper_bound": 12 },
+        "V7": { "lower_bound": 8, "upper_bound": 16 },
+        "V8": { "lower_bound": 8, "upper_bound": 14 },
+        "V9": { "lower_bound": 9, "upper_bound": 18 },
+        "V10": { "lower_bound": 13, "upper_bound": 18 }
+      }
+    },
+    "General_Fitness": {
+      "Max_Push_Ups_reps": {
+        "V3": { "lower_bound": 9, "upper_bound": 18 },
+        "V4": { "lower_bound": 5, "upper_bound": 28 },
+        "V5": { "lower_bound": 13, "upper_bound": 30 },
+        "V6": { "lower_bound": 10, "upper_bound": 30 },
+        "V7": { "lower_bound": 12, "upper_bound": 32 },
+        "V8": { "lower_bound": 9, "upper_bound": 30 },
+        "V9": { "lower_bound": 14, "upper_bound": 40 },
+        "V10": { "lower_bound": 21, "upper_bound": 33 }
+      }
+    }
+  },
+  "Sport_Climbing_Male": {
+    "Finger_Strength": {
+      "Max_Hang_Str_Wt_20mm_10sec": {
+        "5.11a/b": { "lower_bound": 1.10, "upper_bound": 1.38 },
+        "5.11c/d": { "lower_bound": 1.09, "upper_bound": 1.42 },
+        "5.12a/b": { "lower_bound": 1.19, "upper_bound": 1.54 },
+        "5.12c/d": { "lower_bound": 1.25, "upper_bound": 1.58 },
+        "5.13a/b": { "lower_bound": 1.27, "upper_bound": 1.60 },
+        "5.13c/d": { "lower_bound": 1.33, "upper_bound": 1.68 }
+      },
+      "Repeaters_7_3_Bodyweight_20mm_sec": {
+        "5.11a/b": { "lower_bound": 40, "upper_bound": 123 },
+        "5.11c/d": { "lower_bound": 47, "upper_bound": 130 },
+        "5.12a/b": { "lower_bound": 59, "upper_bound": 161 },
+        "5.12c/d": { "lower_bound": 86, "upper_bound": 183 },
+        "5.13a/b": { "lower_bound": 100, "upper_bound": 209 },
+        "5.13c/d": { "lower_bound": 107, "upper_bound": 214 }
+      },
+      "Continuous_Hang_Time_20mm_sec": {
+        "5.11a/b": { "lower_bound": 16, "upper_bound": 40 },
+        "5.11c/d": { "lower_bound": 16, "upper_bound": 48 },
+        "5.12a/b": { "lower_bound": 25, "upper_bound": 57 },
+        "5.12c/d": { "lower_bound": 29, "upper_bound": 69 },
+        "5.13a/b": { "lower_bound": 32, "upper_bound": 64 },
+        "5.13c/d": { "lower_bound": 46, "upper_bound": 74 }
+      }
+    },
+    "Upper_Body_Power": {
+      "Weighted_Pull_Up_Str_Wt_1RM": {
+        "5.11a/b": { "lower_bound": 1.19, "upper_bound": 1.61 },
+        "5.11c/d": { "lower_bound": 1.30, "upper_bound": 1.58 },
+        "5.12a/b": { "lower_bound": 1.33, "upper_bound": 1.64 },
+        "5.12c/d": { "lower_bound": 1.37, "upper_bound": 1.67 },
+        "5.13a/b": { "lower_bound": 1.42, "upper_bound": 1.73 },
+        "5.13c/d": { "lower_bound": 1.47, "upper_bound": 1.78 }
+      },
+      "Campus_Max_Reach_inches": {
+        "5.11a/b": { "lower_bound": 20, "upper_bound": 38 },
+        "5.11c/d": { "lower_bound": 19, "upper_bound": 37 },
+        "5.12a/b": { "lower_bound": 27, "upper_bound": 37 },
+        "5.12c/d": { "lower_bound": 28, "upper_bound": 37 },
+        "5.13a/b": { "lower_bound": 30, "upper_bound": 38 },
+        "5.13c/d": { "lower_bound": 28, "upper_bound": 40 }
+      },
+      "Max_Pull_Ups_reps": {
+        "5.11a/b": { "lower_bound": 7, "upper_bound": 18 },
+        "5.11c/d": { "lower_bound": 10, "upper_bound": 19 },
+        "5.12a/b": { "lower_bound": 10, "upper_bound": 20 },
+        "5.12c/d": { "lower_bound": 12, "upper_bound": 20 },
+        "5.13a/b": { "lower_bound": 12, "upper_bound": 23 },
+        "5.13c/d": { "lower_bound": 14, "upper_bound": 26 }
+      }
+    },
+    "Campus_Power": {
+      "Long_Reach_Foot_On_Campus_Time_sec": {
+        "5.11a/b": { "lower_bound": 26, "upper_bound": 57 },
+        "5.11c/d": { "lower_bound": 22, "upper_bound": 98 },
+        "5.12a/b": { "lower_bound": 41, "upper_bound": 109 },
+        "5.12c/d": { "lower_bound": 51, "upper_bound": 141 },
+        "5.13a/b": { "lower_bound": 61, "upper_bound": 141 },
+        "5.13c/d": { "lower_bound": 52, "upper_bound": 139 }
+      },
+      "Short_Reach_Foot_On_Campus_Time_sec": {
+        "5.11a/b": { "lower_bound": 40, "upper_bound": 83 },
+        "5.11c/d": { "lower_bound": 51, "upper_bound": 138 },
+        "5.12a/b": { "lower_bound": 41, "upper_bound": 183 },
+        "5.12c/d": { "lower_bound": 70, "upper_bound": 254 },
+        "5.13a/b": { "lower_bound": 84, "upper_bound": 275 },
+        "5.13c/d": { "lower_bound": 126, "upper_bound": 316 }
+      }
+    },
+    "General_Fitness": {
+      "Max_Push_Ups_reps": {
+        "5.11a/b": { "lower_bound": 14, "upper_bound": 46 },
+        "5.11c/d": { "lower_bound": 19, "upper_bound": 46 },
+        "5.12a/b": { "lower_bound": 20, "upper_bound": 42 },
+        "5.12c/d": { "lower_bound": 21, "upper_bound": 37 },
+        "5.13a/b": { "lower_bound": 20, "upper_bound": 51 },
+        "5.13c/d": { "lower_bound": 20, "upper_bound": 46 }
+      }
+    }
+  },
+  "Sport_Climbing_Female": {
+    "Finger_Strength": {
+      "Max_Hang_Str_Wt_20mm_10sec": {
+        "5.11a/b": { "lower_bound": 0.99, "upper_bound": 1.37 },
+        "5.11c/d": { "lower_bound": 1.00, "upper_bound": 1.35 },
+        "5.12a/b": { "lower_bound": 1.14, "upper_bound": 1.49 },
+        "5.12c/d": { "lower_bound": 1.07, "upper_bound": 1.63 },
+        "5.13a/b": { "lower_bound": 1.17, "upper_bound": 1.59 },
+        "5.13c/d": { "lower_bound": 1.24, "upper_bound": 1.58 }
+      },
+      "Repeaters_7_3_Bodyweight_20mm_sec": {
+        "5.11a/b": { "lower_bound": 34, "upper_bound": 115 },
+        "5.11c/d": { "lower_bound": 25, "upper_bound": 91 },
+        "5.12a/b": { "lower_bound": 41, "upper_bound": 151 },
+        "5.12c/d": { "lower_bound": 59, "upper_bound": 195 },
+        "5.13a/b": { "lower_bound": 58, "upper_bound": 195 },
+        "5.13c/d": { "lower_bound": 50, "upper_bound": 185 }
+      },
+      "Continuous_Hang_Time_20mm_sec": {
+        "5.11a/b": { "lower_bound": 11, "upper_bound": 38 },
+        "5.11c/d": { "lower_bound": 7, "upper_bound": 37 },
+        "5.12a/b": { "lower_bound": 22, "upper_bound": 54 },
+        "5.12c/d": { "lower_bound": 19, "upper_bound": 62 },
+        "5.13a/b": { "lower_bound": 31, "upper_bound": 63 },
+        "5.13c/d": { "lower_bound": 33, "upper_bound": 73 }
+      }
+    },
+    "Upper_Body_Power": {
+      "Weighted_Pull_Up_Str_Wt_1RM": {
+        "5.11a/b": { "lower_bound": 1.05, "upper_bound": 1.42 },
+        "5.11c/d": { "lower_bound": 1.05, "upper_bound": 1.36 },
+        "5.12a/b": { "lower_bound": 1.14, "upper_bound": 1.45 },
+        "5.12c/d": { "lower_bound": 1.16, "upper_bound": 1.50 },
+        "5.13a/b": { "lower_bound": 1.24, "upper_bound": 1.47 },
+        "5.13c/d": { "lower_bound": 1.41, "upper_bound": 1.66 }
+      },
+      "Campus_Max_Reach_inches": {
+        "5.11a/b": { "lower_bound": 18, "upper_bound": 32 },
+        "5.11c/d": { "lower_bound": 13, "upper_bound": 26 },
+        "5.12a/b": { "lower_bound": 16, "upper_bound": 35 },
+        "5.12c/d": { "lower_bound": 20, "upper_bound": 28 },
+        "5.13a/b": { "lower_bound": 24, "upper_bound": 33 },
+        "5.13c/d": { "lower_bound": 30, "upper_bound": 35 }
+      },
+      "Max_Pull_Ups_reps": {
+        "5.11a/b": { "lower_bound": 2, "upper_bound": 12 },
+        "5.11c/d": { "lower_bound": 2, "upper_bound": 11 },
+        "5.12a/b": { "lower_bound": 5, "upper_bound": 14 },
+        "5.12c/d": { "lower_bound": 6, "upper_bound": 15 },
+        "5.13a/b": { "lower_bound": 8, "upper_bound": 14 },
+        "5.13c/d": { "lower_bound": 12, "upper_bound": 24 }
+      }
+    },
+    "Campus_Power": {
+      "Long_Reach_Foot_On_Campus_Time_sec": {
+        "5.11a/b": { "lower_bound": 27, "upper_bound": 73 },
+        "5.11c/d": { "lower_bound": 33, "upper_bound": 87 },
+        "5.12a/b": { "lower_bound": 57, "upper_bound": 103 },
+        "5.12c/d": { "lower_bound": 57, "upper_bound": 146 },
+        "5.13a/b": { "lower_bound": 51, "upper_bound": 164 },
+        "5.13c/d": { "lower_bound": 47, "upper_bound": 194 }
+      },
+      "Short_Reach_Foot_On_Campus_Time_sec": {
+        "5.11a/b": { "lower_bound": 31, "upper_bound": 121 },
+        "5.11c/d": { "lower_bound": 40, "upper_bound": 126 },
+        "5.12a/b": { "lower_bound": 79, "upper_bound": 169 },
+        "5.12c/d": { "lower_bound": 60, "upper_bound": 223 },
+        "5.13a/b": { "lower_bound": 69, "upper_bound": 249 },
+        "5.13c/d": { "lower_bound": 89, "upper_bound": 417 }
+      }
+    },
+    "General_Fitness": {
+      "Max_Push_Ups_reps": {
+        "5.11a/b": { "lower_bound": 6, "upper_bound": 30 },
+        "5.11c/d": { "lower_bound": 7, "upper_bound": 27 },
+        "5.12a/b": { "lower_bound": 12, "upper_bound": 28 },
+        "5.12c/d": { "lower_bound": 12, "upper_bound": 34 },
+        "5.13a/b": { "lower_bound": 10, "upper_bound": 27 },
+        "5.13c/d": { "lower_bound": 18, "upper_bound": 51 }
+      }
+    }
+  }
+}
