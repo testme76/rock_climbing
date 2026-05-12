@@ -9,16 +9,18 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // User settings (hardcoded for demo)
+  const [currentGrade, setCurrentGrade] = useState('V5');
+  const GRADES = ['V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10'];
+
   const userSettings = {
     gender: 'male',
     climbingType: 'bouldering',
-    targetGrade: 'V5'
+    targetGrade: currentGrade
   };
 
   useEffect(() => {
     loadScores();
-  }, []);
+  }, [currentGrade]);
 
   const loadScores = async () => {
     try {
@@ -26,11 +28,12 @@ function Dashboard() {
       const response = await getLatestScores(1);
 
       if (response.success && response.data.length > 0) {
-        setScores(response.data);
+        const filtered = response.data.filter(s => s.metric_name !== 'Campus_Max_Reach_inches');
+        setScores(filtered);
 
         // Analyze weaknesses
         const weaknessData = findWeaknesses(
-          response.data,
+          filtered,
           userSettings.gender,
           userSettings.climbingType,
           userSettings.targetGrade
@@ -91,32 +94,30 @@ function Dashboard() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Your Climbing Performance</h1>
-        <p className="text-gray-600">
-          Target Grade: <span className="font-semibold">{userSettings.targetGrade}</span>
-          {' • '}
-          {userSettings.gender} {userSettings.climbingType}
-        </p>
+      <div className="mb-8 flex items-center justify-between">
+        <h1 className="text-3xl font-bold">Your Climbing Performance</h1>
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-semibold text-gray-600">Current Grade</label>
+          <select
+            value={currentGrade}
+            onChange={(e) => setCurrentGrade(e.target.value)}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            {GRADES.map(g => <option key={g} value={g}>{g}</option>)}
+          </select>
+        </div>
       </div>
 
       {/* Grade Recommendation */}
       {recommendation && (
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-2">Performance Summary</h2>
-          <p className="text-lg mb-2">
-            You're at the <span className="font-bold text-blue-600">{recommendation.currentLevel}</span>
-          </p>
-          <p className="text-gray-700 mb-2">{recommendation.recommendation}</p>
-          <p className="text-sm text-gray-600">
-            {recommendation.weaknessCount} of {recommendation.totalMetrics} metrics need improvement
-          </p>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+          <p className="text-lg font-semibold text-blue-900">{recommendation.recommendation}</p>
         </div>
       )}
 
       {/* Weaknesses Section */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">💪 Your Weaknesses</h2>
+        <h2 className="text-2xl font-semibold mb-4">Your Weaknesses</h2>
         <div className="grid gap-4">
           {weaknesses
             .filter(w => w.is_weakness)
@@ -134,7 +135,7 @@ function Dashboard() {
                     <p className="text-sm text-gray-600">{weakness.category}</p>
                   </div>
                   <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">
-                    {weakness.percentile}th percentile
+                    {weakness.severity.toFixed(2)} below next grade
                   </span>
                 </div>
 
@@ -173,8 +174,8 @@ function Dashboard() {
 
           {weaknesses.filter(w => w.is_weakness).length === 0 && (
             <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-              <p className="text-green-800 font-semibold">🎉 No weaknesses detected!</p>
-              <p className="text-green-600 text-sm">All your metrics are above the 50th percentile.</p>
+              <p className="text-green-800 font-semibold">No weaknesses detected!</p>
+              <p className="text-green-600 text-sm">All your metrics meet the next grade's standards.</p>
             </div>
           )}
         </div>
@@ -182,7 +183,7 @@ function Dashboard() {
 
       {/* All Metrics Section */}
       <div>
-        <h2 className="text-2xl font-semibold mb-4">📊 All Your Metrics</h2>
+        <h2 className="text-2xl font-semibold mb-4">All Your Metrics</h2>
         <div className="bg-white border rounded-lg overflow-hidden">
           <table className="w-full">
             <thead className="bg-gray-50">
@@ -214,6 +215,10 @@ function Dashboard() {
                     {item.is_weakness ? (
                       <span className="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs font-semibold">
                         Needs Work
+                      </span>
+                    ) : item.is_exceeding ? (
+                      <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded-full text-xs font-semibold">
+                        Exceeds
                       </span>
                     ) : (
                       <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-semibold">
