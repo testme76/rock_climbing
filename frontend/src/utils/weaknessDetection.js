@@ -1,15 +1,29 @@
-// Import benchmark data
 import benchmarks from '../../../backend/data/climbing-benchmarks.json';
 
 const BOULDERING_GRADES = ['V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10'];
 
-/**
- * Find weaknesses based on user's scores compared to benchmark data
- * @param {Array} userScores - Array of user's latest scores
- * @param {String} gender - 'male' or 'female'
- * @param {String} targetGrade - Target grade (e.g., 'V5')
- * @returns {Array} - Array of weaknesses sorted by severity
- */
+// Returns a fractional grade index representing where a value sits in the full grade ladder.
+// e.g. 2.7 means "between V5 and V6, 70% of the way through V5's band"
+// Returns -Infinity if below all grade bands, or the top of the last band if above.
+const getGradeEquivalent = (value, metricBenchmarks) => {
+  let gradeEquivalent = -Infinity;
+
+  for (let i = 0; i < BOULDERING_GRADES.length; i++) {
+    const band = metricBenchmarks[BOULDERING_GRADES[i]];
+    if (!band) continue;
+
+    const { lower_bound, upper_bound } = band;
+    const range = upper_bound - lower_bound;
+
+    if (value >= lower_bound) {
+      const fraction = range > 0 ? Math.min((value - lower_bound) / range, 1) : 1;
+      gradeEquivalent = i + fraction;
+    }
+  }
+
+  return gradeEquivalent;
+};
+
 export const findWeaknesses = (userScores, gender = 'male', climbingType = 'bouldering', targetGrade = 'V5') => {
   const categoryKey = `Bouldering_${gender.charAt(0).toUpperCase() + gender.slice(1)}`;
   const categoryData = benchmarks[categoryKey];
@@ -19,11 +33,7 @@ export const findWeaknesses = (userScores, gender = 'male', climbingType = 'boul
     return [];
   }
 
-  const gradeIndex = BOULDERING_GRADES.indexOf(targetGrade);
-  const nextGrade = gradeIndex !== -1 && gradeIndex < BOULDERING_GRADES.length - 1
-    ? BOULDERING_GRADES[gradeIndex + 1]
-    : null;
-
+  const targetGradeIndex = BOULDERING_GRADES.indexOf(targetGrade);
   const weaknesses = [];
 
   userScores.forEach(userScore => {
@@ -31,38 +41,39 @@ export const findWeaknesses = (userScores, gender = 'male', climbingType = 'boul
 
     Object.keys(categoryData).forEach(metricCategory => {
       const metrics = categoryData[metricCategory];
+      const metricBenchmarks = metrics[userScore.metric_name];
 
-      if (metrics[userScore.metric_name] && metrics[userScore.metric_name][targetGrade]) {
-        benchmarkFound = true;
-        const benchmark = metrics[userScore.metric_name][targetGrade];
-        const userValue = parseFloat(userScore.score);
+      if (!metricBenchmarks || !metricBenchmarks[targetGrade]) return;
+      benchmarkFound = true;
 
-        const nextBenchmark = nextGrade && metrics[userScore.metric_name][nextGrade];
-        const threshold = nextBenchmark ? nextBenchmark.lower_bound : benchmark.upper_bound;
-        const nextUpperBound = nextBenchmark ? nextBenchmark.upper_bound : null;
+      const userValue = parseFloat(userScore.score);
+      const targetBand = metricBenchmarks[targetGrade];
+      const gradeEquivalent = getGradeEquivalent(userValue, metricBenchmarks);
 
-        const isWeakness = userValue < threshold;
-        const isExceeding = nextUpperBound !== null && userValue > nextUpperBound;
-        const severity = isWeakness ? threshold - userValue : 0;
+      // Positive = grades behind target, negative = grades ahead
+      const gradeGap = targetGradeIndex - gradeEquivalent;
 
-        const range = benchmark.upper_bound - benchmark.lower_bound;
-        const percentile = range > 0
-          ? Math.round(((userValue - benchmark.lower_bound) / range) * 100)
-          : 100;
+      const range = targetBand.upper_bound - targetBand.lower_bound;
+      const percentile = range > 0
+        ? Math.round(((userValue - targetBand.lower_bound) / range) * 100)
+        : 100;
 
-        weaknesses.push({
-          metric_name: userScore.metric_name,
-          user_score: userValue,
-          benchmark_low: benchmark.lower_bound,
-          benchmark_high: benchmark.upper_bound,
-          percentile,
-          is_weakness: isWeakness,
-          is_exceeding: isExceeding,
-          severity,
-          unit: userScore.unit,
-          category: metricCategory
-        });
-      }
+      weaknesses.push({
+        metric_name: userScore.metric_name,
+        user_score: userValue,
+        benchmark_low: targetBand.lower_bound,
+        benchmark_high: targetBand.upper_bound,
+        percentile: Math.max(0, Math.min(100, percentile)),
+        grade_equivalent: gradeEquivalent >= 0
+          ? BOULDERING_GRADES[Math.floor(gradeEquivalent)]
+          : 'Below ' + BOULDERING_GRADES[0],
+        grade_gap: gradeGap,
+        is_weakness: gradeGap > 0,
+        is_exceeding: gradeGap < -0.5,
+        severity: Math.max(0, gradeGap),
+        unit: userScore.unit,
+        category: metricCategory
+      });
     });
 
     if (!benchmarkFound) {
@@ -70,14 +81,10 @@ export const findWeaknesses = (userScores, gender = 'male', climbingType = 'boul
     }
   });
 
-  return weaknesses.sort((a, b) => b.severity - a.severity);
+  // Sort by grade gap descending — most grades behind = most limiting weakness first
+  return weaknesses.sort((a, b) => b.grade_gap - a.grade_gap);
 };
 
-/**
- * Get grade recommendations based on user's overall performance
- * @param {Array} weaknessData - Weakness analysis data
- * @returns {Object} - Grade recommendations
- */
 export const getGradeRecommendation = (weaknessData) => {
   if (!weaknessData || weaknessData.length === 0) {
     return {
@@ -100,11 +107,6 @@ export const getGradeRecommendation = (weaknessData) => {
   };
 };
 
-/**
- * Format metric name for display
- * @param {String} metricName - Raw metric name from database
- * @returns {String} - Formatted display name
- */
 export const formatMetricName = (metricName) => {
   return metricName
     .replace(/_/g, ' ')

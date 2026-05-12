@@ -33,4 +33,44 @@ export const checkHealth = async () => {
   return response.data;
 };
 
+// Stream a training plan from Claude AI via SSE
+export const streamTrainingPlan = async (payload, onDelta, onPlan, onError) => {
+  const url = `${API_URL}/training-plan`;
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    onError(`Request failed: ${response.status}`);
+    return;
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split('\n');
+    buffer = lines.pop();
+
+    for (const line of lines) {
+      if (!line.startsWith('data: ')) continue;
+      try {
+        const event = JSON.parse(line.slice(6));
+        if (event.type === 'generating') onDelta(event.delta ?? '');
+        else if (event.type === 'plan') onPlan(event);
+        else if (event.type === 'error') onError(event.message);
+      } catch {
+        // ignore malformed SSE lines
+      }
+    }
+  }
+};
+
 export default api;

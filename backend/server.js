@@ -20,7 +20,9 @@ app.get('/api/health', (req, res) => {
 
 // API Routes
 import testResultsRoutes from './routes/testResults.js';
+import trainingPlanRoutes from './routes/trainingPlan.js';
 app.use('/api/test-results', testResultsRoutes);
+app.use('/api/training-plan', trainingPlanRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

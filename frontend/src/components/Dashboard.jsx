@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getLatestScores } from '../services/api';
 import { findWeaknesses, getGradeRecommendation, formatMetricName } from '../utils/weaknessDetection';
+import TrainingPlan from './TrainingPlan';
 
 function Dashboard() {
   const [scores, setScores] = useState([]);
@@ -135,7 +136,7 @@ function Dashboard() {
                     <p className="text-sm text-gray-600">{weakness.category}</p>
                   </div>
                   <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">
-                    {weakness.severity.toFixed(2)} below next grade
+                    {weakness.grade_gap.toFixed(1)} grades behind
                   </span>
                 </div>
 
@@ -147,15 +148,15 @@ function Dashboard() {
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Target Range</p>
+                    <p className="text-sm text-gray-600">Grade Equivalent</p>
                     <p className="text-sm font-semibold">
-                      {weakness.benchmark_low.toFixed(2)} - {weakness.benchmark_high.toFixed(2)}
+                      ~{weakness.grade_equivalent} level
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Gap to Average</p>
-                    <p className="text-lg font-semibold text-orange-600">
-                      {weakness.severity.toFixed(2)} {weakness.unit}
+                    <p className="text-sm text-gray-600">Target Range</p>
+                    <p className="text-sm font-semibold text-orange-600">
+                      {weakness.benchmark_low.toFixed(2)} – {weakness.benchmark_high.toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -175,7 +176,7 @@ function Dashboard() {
           {weaknesses.filter(w => w.is_weakness).length === 0 && (
             <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
               <p className="text-green-800 font-semibold">No weaknesses detected!</p>
-              <p className="text-green-600 text-sm">All your metrics meet the next grade's standards.</p>
+              <p className="text-green-600 text-sm">All your metrics are at or above your target grade level.</p>
             </div>
           )}
         </div>
@@ -232,6 +233,13 @@ function Dashboard() {
           </table>
         </div>
       </div>
+
+      {/* AI Training Plan */}
+      <TrainingPlan
+        weaknesses={weaknesses}
+        targetGrade={currentGrade}
+        gender={userSettings.gender}
+      />
 
       {/* Refresh Button */}
       <div className="mt-8 text-center">
