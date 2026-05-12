@@ -18,8 +18,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
-// Routes will be added here
-// Example: app.use('/api/test-results', testResultsRoutes);
+// API Routes
+import testResultsRoutes from './routes/testResults.js';
+app.use('/api/test-results', testResultsRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
